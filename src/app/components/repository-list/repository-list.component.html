@@ -1,0 +1,9 @@
+<div>
+  <h2>Repository List</h2>
+  <ul>
+    <li *ngFor="let repository of repositories">
+      {{ repository.name }} - {{ repository.description }}
+    </li>
+  </ul>
+  <app-pagination [pageSize]="pageSize" (pageChange)="onPageChange($event)"></app-pagination>
+</div>
