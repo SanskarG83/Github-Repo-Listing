@@ -5,6 +5,7 @@ export interface User {
     avatar_url: String;
     location: String;
     companyName: String;
+    twitter_username: String;
     twitter_url: String;
     githuburl: String;
     // Add other properties as needed

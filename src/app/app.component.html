@@ -37,7 +37,9 @@
     <img src="{{user.avatar_url}}" alt="Profile Picture" class="rounded-full w-80 h-80">
     <p>{{user.bio}}</p>
     <p>{{user.location}}</p>
-    <h4>Twitter url: <a href="{{user.twitter_url}}">{{user.twitter_url}}</a></h4>
+    <a *ngIf="user.twitter_username" href="https://twitter.com/{{user.twitter_username}}">Twitter URL here</a>
+    <a *ngIf="!user.twitter_username" href="https://twitter.com/{user.twitter_username}">Twitter URL not found :(</a>
+
     <!-- <img *ngIf="user.img_url" src={{user.avatar_url}} alt="User Avatar"> -->
     <!-- <p class="text-lg text-gray-700">{{ user.description }}</p> -->
     <!-- Add other user details like location, image, etc. -->
