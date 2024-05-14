@@ -32,11 +32,33 @@
     <button (click)="searchUser()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg ml-2">Search</button>
   </div>
 
-  <div *ngIf="user" class="mb-8">
-    <h1 class="text-2xl font-bold">{{ user.name }}</h1>
+  <div *ngIf="user" class="mb-1">
+    <h1 class="text-2xl font-bold" >{{ user.name }}</h1>
+    <img src="{{user.avatar_url}}" alt="Profile Picture" class="rounded-full w-80 h-80">
+    <p>{{user.bio}}</p>
+    <p>{{user.location}}</p>
+    <h4>Twitter url: <a href="{{user.twitter_url}}">{{user.twitter_url}}</a></h4>
+    <!-- <img *ngIf="user.img_url" src={{user.avatar_url}} alt="User Avatar"> -->
     <!-- <p class="text-lg text-gray-700">{{ user.description }}</p> -->
     <!-- Add other user details like location, image, etc. -->
   </div>
+
+  
+
+  <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div *ngFor="let repository of repositories" class="bg-gray-100 rounded-lg p-4">
+      <h3 class="text-lg font-semibold">{{ repository.name }}</h3>
+      <p class="text-gray-700">{{ repository.description }}</p>
+      <div class="mt-2">
+        <div>
+          <ng-container *ngFor="let lang of toArray(repository.languages); let i = index">
+            {{ lang.key }}
+            <span *ngIf="i !== toArray(repository.languages).length - 1">, </span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div> -->
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div *ngFor="let repository of repositories" class="bg-gray-100 rounded-lg p-4">
@@ -44,22 +66,20 @@
       <p class="text-gray-700">{{ repository.description }}</p>
       <div class="mt-2">
         <!-- <h4 class="text-sm font-semibold">Tech Stack:</h4> -->
-        <div>
-          <ng-container *ngFor="let lang of toArray(repository.languages); let i = index">
+        <div class="flex flex-wrap">
+          <div *ngFor="let lang of toArray(repository.languages)" class="bg-blue-500 text-white rounded-lg px-2 py-1 mr-2 mb-2">
             {{ lang.key }}
-            <!-- Add a comma and space if it's not the last element -->
-            <span *ngIf="i !== toArray(repository.languages).length - 1">, </span>
-          </ng-container>
+          </div>
         </div>
-        
       </div>
     </div>
   </div>
+  
 
   <div *ngIf="!user && searchUsername" class="mt-8">
-    <p class="text-red-500" *ngIf="!user">No user found for '{{ searchUsername }}'.</p>
+    <p class="text-red-500" *ngIf="user">No user found for '{{ searchUsername }}'.</p>
   </div>
-  <div *ngIf="!searchUsername" class="mt-8">
+  <div *ngIf="!searchUsername" class="mt-1">
     <p class="text-gray-600">Please enter a GitHub username to search.</p>
   </div>
 </div>

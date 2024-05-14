@@ -30,7 +30,8 @@ export class AppComponent implements OnInit {
     this.apiService.getUser(this.searchUsername).subscribe(user => {
       this.user = user;
       this.getRepositories(this.searchUsername);
-      console.log(user)
+      // this.getBio();
+      console.log(user);
     }, error => {
       console.error('Error fetching user:', error);
       this.user = undefined; // Clear user on error
@@ -44,15 +45,38 @@ export class AppComponent implements OnInit {
         this.repositories = repositories;
       }, error => {
         console.error('Error fetching repositories:', error);
-        this.repositories = []; // Clear repositories on error
+        this.repositories = [];
       });
   }
+
+
   toArray(obj: { [key: string]: any }) {
     return Object.keys(obj).map(key => ({ key: key, value: obj[key] }));
   }
   
+  // getBio(){
+  //   if (!this.user?.login) {
+  //     console.warn("User login is not available.");
+  //     return;
+  //   }
+  
+  //   this.apiService.getUserBio(this.user.login).subscribe(
+  //     bio => {
+  //       if (this.user) {
+  //         this.user.bio = bio;
+  //       }
+  //     },
+  //     error => {
+  //       console.error('Error fetching user bio:', error);
+  //     }
+  //   );
+  // }
+  
+
   onPageChange(page: number) {
     this.currentPage = page;
     this.getRepositories(this.user!.login);
   }
+
+
 }
