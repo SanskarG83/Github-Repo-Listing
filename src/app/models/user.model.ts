@@ -7,7 +7,7 @@ export interface User {
     companyName: String;
     twitter_username: String;
     twitter_url: String;
-    githuburl: String;
+    html_url: String;
     // Add other properties as needed
 }
   
