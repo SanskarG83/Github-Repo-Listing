@@ -8,7 +8,7 @@
   <div style="width: 1100px; height: 1278px;" class="mx-auto">
     <div *ngIf="user" class="mb-8 flex items-center pl-60 pr-40">
       <div class="w-1/2">
-        <img src="{{ user.avatar_url }}" alt="Profile Picture" class="rounded-full w-80 h-80">
+        <img src="{{ user.avatar_url }}" alt="Profile Picture" class="rounded-full w-80 h-80 border-2 border-black">
         <a class="justify-left text-left" href="{{user.html_url}}">GitHub: {{user.html_url}}</a>
       </div>
       <div class="flex-1 bg-black p-0.3">
@@ -78,7 +78,7 @@
     
     
     
-
+  
     <div *ngIf="user && searchUsername" class="mt-8">
       <p class="text-red-500" *ngIf="!user">No user found for '{{ searchUsername }}'.</p>
     </div>
@@ -87,3 +87,8 @@
     </div>
   </div>
 </div>
+<app-pagination 
+    [pageSizeOptions]="[6, 12, 18, 24, 30]"
+    [pageSize]="pageSize"
+    (pageChange)="onPageChange($event)">
+</app-pagination>

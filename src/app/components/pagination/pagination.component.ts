@@ -6,10 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent {
+  @Input() pageSizeOptions: number[] = [6, 12, 18, 24, 30];
   @Input() pageSize: number = 6;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  currentPage: number = 5;
+  currentPage: number = 1;
 
   constructor() {}
 

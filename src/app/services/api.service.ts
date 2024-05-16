@@ -23,8 +23,8 @@ export class ApiService {
     return this.http.get<User>(`https://api.github.com/users/${username}`, { headers: headers });
   }
 
-  getUserRepositories(username: string, page: number, pageSize: number): Observable<Repository[]> {
-    const url = `https://api.github.com/users/${username}/repos?page=${page}&per_page=${pageSize}`;
+  getUserRepositories(username: string, offset: number, limit: number): Observable<Repository[]> {
+    const url = `https://api.github.com/users/${username}/repos?page=${offset}&per_page=${limit}`;
     const headers = new HttpHeaders({
       'Authorization': 'Basic ' + btoa(this.clientId + ':' + this.clientSecret)
     });
@@ -44,6 +44,9 @@ export class ApiService {
       )
     );
   }
+  
+  
+  
 
   getRepositoryLanguages(username: string, repoName: string): Observable<{ [key: string]: number }> {
     const url = `https://api.github.com/repos/${username}/${repoName}/languages`;
