@@ -1,42 +1,60 @@
-<div class="max-w-500">
-  <div class="container mx-auto p-4 text-center">
-    <div class="mb-4">
-      <input type="text" [(ngModel)]="searchUsername" placeholder="Enter GitHub username" class="rounded-lg p-2 border border-gray-300">
-      <button (click)="searchUser()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg ml-2">Search</button>
+  <div id="hole" class="container mx-auto p-4 text-center">
+    <div id="display" class="container mb-10 pb-5 py-5">
+      <h2 class="mb-4 text-red-600 font-bold">fyle-internship-challenge</h2>
+      <div class="flex justify-center mb-5">
+        <img style="height: 90px; width: 280px;" src="https://www.fylehq.com/assets/images/svg-images/fylelogo.svg" alt="">
+      </div>
+      <div class="mb-4">
+        <input type="text" [(ngModel)]="searchUsername" placeholder="Enter GitHub username" class="rounded-lg p-2 border border-gray-300">
+        <button (click)="searchUser()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg ml-2">Search</button>
+      </div>
+      <div *ngIf="!searchUsername" class="mt-1">
+        <p class="text-gray-600 font-mono">Please enter a GitHub username to search.</p>
+      </div>
+    </div>
+    
+    <div *ngIf="searchPerformed && !user && searchUsername" class="mt-8">
+      <p class="text-red-500">No user found for '{{ searchUsername }}'.</p>
     </div>
 
-  <div style="width: 1100px; height: 1278px;" class="mx-auto">
-    <div *ngIf="user" class="mb-8 flex items-center pl-60 pr-40">
-      <div class="w-1/2">
-        <img src="{{ user.avatar_url }}" alt="Profile Picture" class="rounded-full w-80 h-80 border-2 border-black">
-        <a class="justify-left text-left" href="{{user.html_url}}">GitHub: {{user.html_url}}</a>
-      </div>
-      <div class="flex-1 bg-black p-0.3">
-        <div class="bg-gray-100 p-4 rounded-lg">
-          <div class="text-center">
-            <h1 class="text-2xl font-bold">{{ user.name }}</h1>
-            <p>{{ user.bio }}</p>
-            <div class="flex items-center justify-center mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f01313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-              <p class="ml-1">{{ user.location }}</p>
+    <div id="info" style="width: 1100px; height: 400px;" class="mx-auto">
+      <div *ngIf="user" class="mb-8 flex items-center pl-60 pr-40">
+        <div class="w-1/2">
+          <img src="{{ user.avatar_url }}" alt="Profile Picture" class="rounded-full w-80 h-80 border-2 border-black">
+          <a class="justify-left text-left hover:text-red-600 focus:outline focus:ring focus:ring-red-600 hover:underline underline-green-300" href="{{user.html_url}}">GitHub: {{user.html_url}}</a>
+        </div>
+        <div class="flex-1 bg-black p-0.3">
+          <div class="bg-gray-100 p-4 rounded-lg">
+            <div class="text-center">
+              <h1 class="text-2xl font-bold mb-2">{{ user.name }}</h1>
+              <p class="flex items-center justify-center mb-3">{{ user.bio}}</p>
+              <div class="flex items-center justify-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f01313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <p class="ml-1">{{ user.location }}</p>
+              </div>
+              <a *ngIf="user.twitter_username" href="https://twitter.com/{{ user.twitter_username }}" class="flex items-center justify-center mb-2">
+                <svg class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
+                </svg>
+                <p>Twitter: <a href="https://twitter.com/{{user.twitter_username}}">https://twitter.com/{{user.twitter_username}}</a></p>
+              </a>
+              <a *ngIf="!user.twitter_username" class="inline-flex items-center">Twitter URL not found :(</a>
             </div>
-            <a *ngIf="user.twitter_username" href="https://twitter.com/{{ user.twitter_username }}" class="flex items-center justify-center mb-2">
-              <svg class="h-4 w-4 text-red-500 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48" />
-              </svg>
-              <p>Twitter: <a href="https://twitter.com/{{user.twitter_username}}">https://twitter.com/{{user.twitter_username}}</a></p>
-            </a>
-            <a *ngIf="!user.twitter_username" href="https://twitter.com/{{ user.twitter_username }}" class="inline-flex items-center mb-2">Twitter URL not found :(</a>
           </div>
         </div>
       </div>
+    </div>    
+    <div *ngIf="searchUsername" class="inline-flex items-center justify-center w-full">
+      <hr class="w-80 h-2 my-2 bg-gray-200 border-0 rounded dark:bg-gray-700">
+      <div class="absolute px-4 -translate-x-1/2 bg-white left-1/2 dark:bg-gray-900">
+          <svg class="w-4 h-4 text-gray-700 dark:text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+      <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
+      </svg>
     </div>
-    
-    
-    
+  </div>
     
     
 
@@ -56,39 +74,31 @@
         </div>
       </div>
     </div> -->
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 main-container max-w-800 mx-auto">
-      <div *ngFor="let repository of repositories" class="relative bg-gray-150 rounded-lg border-2 border-black p-4">
-        <h3 class="text-lg text-blue-500 font-bold justify-left text-left py-2">{{ repository.name }}</h3>
-        <p class="text-gray-700 description truncate justify-left text-left" appTruncate="100">{{ repository.description }}</p>
-        <div class="mt-8">
-          <div class="flex flex-wrap">
-            <div *ngFor="let lang of toArray(repository.languages)" class="bg-blue-500 text-white rounded-lg px-2 py-1 mr-2 mb-2">
-              {{ lang.key }}
+  
+      <div *ngIf="searchUsername" style="width: 1100px" class="grid grid-cols-1 md:grid-cols-2 gap-10 main-container py-10 max-w-800 mx-auto">
+        <div id="reposlist"  *ngFor="let repository of repositories" class="relative bg-gray-150 rounded-lg border-2 border-black p-4">
+          <h3 class="text-lg text-blue-500 font-bold justify-left text-left py-2">{{ repository.name }}</h3>
+          <p *ngIf="repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">{{ repository.description }}</p>
+          <p *ngIf="!repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">No Description for this repository available</p>
+          <div class="mt-8">
+            <div class="flex flex-wrap">
+              <div *ngFor="let lang of toArray(repository.languages)" class="bg-blue-500 text-white rounded-lg px-2 py-1 mr-2 mb-2">
+                {{ lang.key }}
+              </div>
             </div>
           </div>
+          <span class="absolute bottom-0 right-0 text-sm mb-2 mr-2">
+            <a href="https:github.com/search?q={{repository.name}}&type=repositories" class="hover:text-green-600 focus:outline focus:ring focus:ring-green-600 text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
+          </span>
         </div>
-        <span class="absolute bottom-0 right-0 text-sm mb-2 mr-2">
-          <a href="https:github.com/search?q={{repository.name}}&type=repositories" class="text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
-        </span>
       </div>
+
+    <div class="mb-10 py-2" *ngIf="user">
+      <app-pagination 
+        [pageSizeOptions]="[6, 12, 18, 24, 30]"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)">
+      </app-pagination>
     </div>
-  </div>
-    
-    
-    
-    
-  
-    <div *ngIf="user && searchUsername" class="mt-8">
-      <p class="text-red-500" *ngIf="!user">No user found for '{{ searchUsername }}'.</p>
-    </div>
-    <div *ngIf="!searchUsername" class="mt-1">
-      <p class="text-gray-600">Please enter a GitHub username to search.</p>
-    </div>
-  </div>
+      
 </div>
-<app-pagination 
-    [pageSizeOptions]="[6, 12, 18, 24, 30]"
-    [pageSize]="pageSize"
-    (pageChange)="onPageChange($event)">
-</app-pagination>

@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   repositories: Repository[] = [];
   currentPage = 1;
   pageSize = 10;
-  searchUsername = ''; // Add a property to store the entered username
+  searchUsername = '';
+  searchPerformed: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -22,20 +23,20 @@ export class AppComponent implements OnInit {
   }
 
   searchUser() {
+    this.searchPerformed = true; // Update the searchPerformed flag
     if (!this.searchUsername.trim()) {
-      // If the search username is empty, do nothing
       return;
     }
     
     this.apiService.getUser(this.searchUsername).subscribe(user => {
+      this.searchPerformed = false;
       this.user = user;
       this.getRepositories(this.searchUsername);
-      // this.getBio();
       console.log(user);
     }, error => {
       console.error('Error fetching user:', error);
-      this.user = undefined; // Clear user on error
-      this.repositories = []; // Clear repositories on error
+      this.user = undefined;
+      this.repositories = [];
     });
   }
 

@@ -1,5 +1,19 @@
-<div>
-    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
-    <span>{{ currentPage }}</span>
-    <button (click)="nextPage()">Next</button>
+<div class="navigation-container flex items-center justify-center mt-4">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l focus:outline-none" 
+            (click)="prevPage()" 
+            [disabled]="currentPage === 1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 inline-block align-middle ml-2">
+                <path fill-rule="evenodd" d="M8.293 16.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L4.414 11H16a1 1 0 110 2H4.414l3.879 3.879a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+        Previous
+    </button>
+    <span class="bg-gray-200 text-gray-800 font-bold py-2 px-4">{{ currentPage }}</span>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r focus:outline-none" 
+            (click)="nextPage()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 inline-block align-middle mr-2">
+                <path fill-rule="evenodd" d="M11.707 3.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L15.586 11H4a1 1 0 110-2h11.586L11.293 4.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+        Next
+        
+    </button>
 </div>
