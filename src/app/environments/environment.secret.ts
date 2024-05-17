@@ -5,4 +5,3 @@ export const environment = {
     clientId: environment_local.clientId,
     clientSecret: environment_local.clientSecret,
 };
-  
