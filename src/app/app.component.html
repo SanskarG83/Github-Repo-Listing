@@ -56,42 +56,24 @@
     </div>
   </div>
     
-    
-
-    
-
-    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div *ngFor="let repository of repositories" class="bg-gray-100 rounded-lg p-4">
-        <h3 class="text-lg font-semibold">{{ repository.name }}</h3>
-        <p class="text-gray-700">{{ repository.description }}</p>
-        <div class="mt-2">
-          <div>
-            <ng-container *ngFor="let lang of toArray(repository.languages); let i = index">
-              {{ lang.key }}
-              <span *ngIf="i !== toArray(repository.languages).length - 1">, </span>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    </div> -->
   
-      <div *ngIf="searchUsername" style="width: 1100px" class="grid grid-cols-1 md:grid-cols-2 gap-10 main-container py-10 max-w-800 mx-auto">
-        <div id="reposlist"  *ngFor="let repository of repositories" class="relative bg-gray-150 rounded-lg border-2 border-black p-4">
-          <h3 class="text-lg text-blue-500 font-bold justify-left text-left py-2">{{ repository.name }}</h3>
-          <p *ngIf="repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">{{ repository.description }}</p>
-          <p *ngIf="!repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">No Description for this repository available</p>
-          <div class="mt-8">
-            <div class="flex flex-wrap">
-              <div *ngFor="let lang of toArray(repository.languages)" class="bg-blue-500 text-white rounded-lg px-2 py-1 mr-2 mb-2">
-                {{ lang.key }}
-              </div>
-            </div>
+  <div *ngIf="searchUsername" style="width: 1100px" class="grid grid-cols-1 md:grid-cols-2 gap-10 main-container py-10 max-w-800 mx-auto">
+    <div id="reposlist"  *ngFor="let repository of repositories" class="relative bg-gray-150 rounded-lg border-2 border-black p-4">
+      <h3 class="text-lg text-blue-500 font-bold justify-left text-left py-2">{{ repository.name }}</h3>
+      <p *ngIf="repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">{{ repository.description }}</p>
+      <p *ngIf="!repository.description" class="text-gray-700 description truncate justify-left text-left font-semibold" appTruncate="100">No Description for this repository available</p>
+      <div class="mt-8">
+        <div class="flex flex-wrap">
+          <div *ngFor="let lang of toArray(repository.languages)" class="bg-blue-500 text-white rounded-lg px-2 py-1 mr-2 mb-2">
+            {{ lang.key }}
           </div>
-          <span class="absolute bottom-0 right-0 text-sm mb-2 mr-2">
-            <a href="https:github.com/search?q={{repository.name}}&type=repositories" class="hover:text-green-600 focus:outline focus:ring focus:ring-green-600 text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
-          </span>
         </div>
       </div>
+      <span class="absolute bottom-0 right-0 text-sm mb-2 mr-2">
+        <a href="https:github.com/search?q={{repository.name}}&type=repositories" class="hover:text-green-600 focus:outline focus:ring focus:ring-green-600 text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
+      </span>
+    </div>
+  </div>
 
     <div class="mb-10 py-2" *ngIf="user">
       <app-pagination 
