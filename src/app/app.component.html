@@ -121,7 +121,8 @@
           <div class="bg-gray-100 p-4 rounded-lg">
             <div class="text-center">
               <h1 class="text-2xl font-bold mb-2">{{ user.name }}</h1>
-              <p class="flex items-center justify-center mb-3">{{ user.bio }}</p>
+              <p *ngIf="user.bio" class="flex items-center justify-center mb-3">{{ user.bio }}</p>
+              <p *ngIf="!user.bio" class="flex items-center justify-center mb-3">Bio not available!!!</p>
               <div class="flex items-center justify-center mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f01313" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
@@ -173,7 +174,7 @@
           </div>
         </div>
         <span class="absolute bottom-0 right-0 text-sm mb-2 mr-2">
-          <a href="https:github.com/search?q={{repository.name}}&type=repositories" class="hover:text-green-600 focus:outline focus:ring focus:ring-green-600 text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
+          <a href="https://github.com/search?q={{repository.name}}&type=repositories" class="hover:text-green-600 focus:outline focus:ring focus:ring-green-600 text-blue-500 border-b border-blue-500 hover:border-blue-700">Find Similar Repos on Github</a>
         </span>
       </div>
     </ng-template>
