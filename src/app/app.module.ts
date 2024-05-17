@@ -6,6 +6,7 @@ import { HttpClientModule } from  '@angular/common/http';
 import { RepositoryListComponent } from './components/repository-list/repository-list.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
