@@ -5,15 +5,15 @@ import { mergeMap, map } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import { User } from '../models/user.model';
 import { Repository } from '../models/repository.model';
-import { environment } from '../environments/environment.secret';
+import { environment_local } from '../environments/environment.local';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private clientId = environment.clientId; //here use your own Github client ID and Secret by creating Github Auth app
-  private clientSecret = environment.clientSecret;
+  private clientId = environment_local.clientId; //here use your own Github client ID and Secret by creating Github Auth app
+  private clientSecret = environment_local.clientSecret;
 
   constructor(private http: HttpClient) {}
 
