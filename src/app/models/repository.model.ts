@@ -1,5 +1,5 @@
 export interface Repository {
-    id:String;
+    id:string;
     name: string;
     description: string;
     languages: { [key: string]: number };

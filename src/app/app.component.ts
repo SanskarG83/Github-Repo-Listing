@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  title = 'fyle-frontend-challenge';
   user: User | undefined;
   repositories: Repository[] = [];
   currentPage = 1;
