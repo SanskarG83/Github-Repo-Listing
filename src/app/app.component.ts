@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {}
 
   searchUser() {
-    this.searchPerformed = true; // Update the searchPerformed flag
+    this.searchPerformed = true;
     if (!this.searchUsername.trim()) {
       return;
     }
